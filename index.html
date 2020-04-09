@@ -80,6 +80,7 @@
   <button name="render">Render</button>
   <button name="pdf">PDF</button>
 </form>
+<iframe id="my_iframe" style="display:none;"></iframe>
 <footer><p>Very inspired by <a href="https://github.com/GoogleChrome/rendertron" target="_blank">Rendertron</a>. Documentation and project on <a href="https://github.com/cheeaun/puppetron" target="_blank">GitHub</a>.</p></footer>
 <script>
 function encode(url){
@@ -87,6 +88,7 @@ function encode(url){
     return encodeURIComponent(m);
   });
 }
+  
 var action;
 formtron.onsubmit = function(e){
   e.preventDefault();
@@ -94,7 +96,7 @@ formtron.onsubmit = function(e){
   var $width = document.getElementById('width');
   var $height = document.getElementById('height');
   if (action == 'screenshot'){
-    window.open(url + '&width=' + $width.value + '&height=' + $height.value);
+    document.getElementById('my_iframe').src = url + '&width=' + $width.value + '&height=' + $height.value;
   } else {
     location.href = url;
   }
