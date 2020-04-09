@@ -72,6 +72,8 @@
 <h1>Puppetron</h1>
 <form id="formtron">
   <input type="url" name="url" required placeholder="Enter a URL">
+  <input id="width" type="number" name="width" placeholder="width" />
+  <input id="height" type="number" name="height" placeholder="height" />
   <br/>
   <button name="screenshot">Screenshot</button>
   <button name="render">Render</button>
@@ -88,8 +90,10 @@ var action;
 formtron.onsubmit = function(e){
   e.preventDefault();
   var url = '/' + action + '?url=' + encode(formtron.url.value);
+  var $width = document.getElementById('width');
+  var $height = document.getElementById('height');
   if (action == 'screenshot'){
-    location.href = url + '&width=' + window.innerWidth + '&height=' + window.innerHeight;
+    location.href = url + '&width=' + $width.value + '&height=' + $height.value;
   } else {
     location.href = url;
   }
